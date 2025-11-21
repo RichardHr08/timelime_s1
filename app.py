@@ -1,29 +1,21 @@
+thon
+
 import streamlit as st
 import os
 
-# --- 1. CONFIGURACIÓN DE PÁGINA ---
-st.set_page_config(
-    page_title="Página Web Streamlit desde GitHub",
-    layout="wide"
-)
+# --- 2. RUTAS DE IMÁGENES CORREGIDAS ---
 
-st.title("Página Web con Slider de Imágenes")
-st.markdown("---")
+# Cambia la ruta de la carpeta a una cadena vacía, ya que están en la raíz.
+# Esto hace que las rutas sean relativas al archivo app.py
+IMAGE_FOLDER = "" 
 
-# --- 2. RUTAS DE IMÁGENES ---
-
-# Define la carpeta donde están las imágenes.
-# La ruta es RELATIVA a la ubicación de 'app.py' en el repositorio de GitHub.
-IMAGE_FOLDER = "timeline_images"
-
-# Lista de los nombres de tus 5 imágenes.
-# Asegúrate de que los nombres de archivo coincidan con los que subiste a GitHub.
+# Lista de los nombres de tus 5 imágenes (¡CORRIGE LOS NOMBRES AQUÍ!)
 image_files = [
-    os.path.join(IMAGE_FOLDER, "image1.png"),
-    os.path.join(IMAGE_FOLDER, "image2.png"),
-    os.path.join(IMAGE_FOLDER, "image3.png"),
-    os.path.join(IMAGE_FOLDER, "image4.png"),
-    os.path.join(IMAGE_FOLDER, "image5.png"),
+    os.path.join(IMAGE_FOLDER, "timeline1.png"),
+    os.path.join(IMAGE_FOLDER, "timeline2.png"),
+    os.path.join(IMAGE_FOLDER, "timeline3.png"),
+    os.path.join(IMAGE_FOLDER, "timeline4.png"),
+    os.path.join(IMAGE_FOLDER, "timeline5.png"),
 ]
 
 
