@@ -1,6 +1,8 @@
 import streamlit as st 
 import os
 
+st.set_page_config(page_title="Timeline de IA", layout="centered")
+
 # --- 2. RUTAS DE IMÁGENES CORREGIDAS ---
 
 # Cambia la ruta de la carpeta a una cadena vacía, ya que están en la raíz.
