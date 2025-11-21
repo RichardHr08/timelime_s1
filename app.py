@@ -1,46 +1,75 @@
 import streamlit as st
+import os
 
-st.set_page_config(page_title="Timeline IA", layout="centered")
-
-st.title("🧠 Línea de tiempo de la Inteligencia Artificial")
-
-st.write("Usa el slider para recorrer los momentos clave en la historia de la IA.")
-
-# Lista de imágenes almacenadas en GitHub
-timeline = {
-    1: {
-        "titulo": "1950 - Test de Turing",
-        "img": "imagen1.jpg",
-    },
-    2: {
-        "titulo": "1956 - Conferencia de Dartmouth",
-        "img": "imagen2.jpg",
-    },
-    3: {
-        "titulo": "1997 - Deep Blue vence a Kasparov",
-        "img": "imagen3.jpg",
-    },
-    4: {
-        "titulo": "2012 - AlexNet revolución del Deep Learning",
-        "img": "imagen4.jpg",
-    },
-    5: {
-        "titulo": "2022 - Avances en modelos generativos",
-        "img": "imagen5.jpg",
-    },
-}
-
-# Slider interactivo
-punto = st.slider(
-    "Selecciona un punto en la historia",
-    min_value=1,
-    max_value=5,
-    step=1,
+# --- 1. CONFIGURACIÓN DE PÁGINA ---
+st.set_page_config(
+    page_title="Página Web Streamlit desde GitHub",
+    layout="wide"
 )
 
-st.subheader(timeline[punto]["titulo"])
+st.title("Página Web con Slider de Imágenes")
+st.markdown("---")
 
-# Mostrar imagen desde GitHub
-st.image(timeline[punto]["img"], use_column_width=True)
+# --- 2. RUTAS DE IMÁGENES ---
 
-st.info("Las imágenes se cargan directamente desde la carpeta timeline_images de tu repositorio.")
+# Define la carpeta donde están las imágenes.
+# La ruta es RELATIVA a la ubicación de 'app.py' en el repositorio de GitHub.
+IMAGE_FOLDER = "timeline_images"
+
+# Lista de los nombres de tus 5 imágenes.
+# Asegúrate de que los nombres de archivo coincidan con los que subiste a GitHub.
+image_files = [
+    os.path.join(IMAGE_FOLDER, "image1.png"),
+    os.path.join(IMAGE_FOLDER, "image2.png"),
+    os.path.join(IMAGE_FOLDER, "image3.png"),
+    os.path.join(IMAGE_FOLDER, "image4.png"),
+    os.path.join(IMAGE_FOLDER, "image5.png"),
+]
+
+
+if len(image_files) != 5:
+    st.error(f"Error: Se esperaban 5 imágenes, pero se encontraron {len(image_files)} rutas definidas.")
+else:
+    # --- 3. SLIDER ---
+    
+    # Etiquetas personalizadas para cada punto del slider para mejorar la UX
+    slider_labels = {
+        1: "Primer Hito",
+        2: "Segundo Hito",
+        3: "Tercer Hito",
+        4: "Cuarto Hito",
+        5: "Quinto Hito"
+    }
+    
+    # Creamos el slider. El valor inicial será 1.
+    selected_point = st.slider(
+        "Selecciona el punto de la línea de tiempo:",
+        min_value=1,
+        max_value=5,
+        step=1,
+        value=1 # Inicia en el primer punto
+    )
+    
+    # --- 4. CÁLCULO Y CARGA DE IMAGEN ---
+    
+    # Git utiliza un índice base 0, por lo que restamos 1 al valor del slider.
+    image_index = selected_point - 1
+    image_path = image_files[image_index]
+    
+    # Título que cambia según el slider
+    current_label = slider_labels.get(selected_point, f"Punto {selected_point}")
+    st.subheader(f"Mostrando: **{current_label}**")
+
+    try:
+        # Carga la imagen usando la ruta relativa.
+        st.image(
+            image_path,
+            caption=f"Imagen cargada para: {current_label}",
+            use_column_width=True # Ajusta la imagen al ancho de la columna
+        )
+        
+    except FileNotFoundError:
+        st.error(
+            f"❌ **Error de Archivo:** No se pudo encontrar el archivo en la ruta: `{image_path}`. "
+            "Asegúrate de que el archivo exista y que la mayúscula/minúscula del nombre de la carpeta `timeline_images` sea idéntica."
+        )
