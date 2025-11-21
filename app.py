@@ -1,6 +1,4 @@
-thon
-
-import streamlit as st
+import streamlit as st 
 import os
 
 # --- 2. RUTAS DE IMÁGENES CORREGIDAS ---
