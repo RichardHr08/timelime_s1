@@ -16,7 +16,8 @@ eventos = {
     1: {
         "año": 1987,
         "titulo": "Sistemas de Reglas para Detección de Fraude",
-        "descripcion": "Los bancos comienzan a usar sistemas basados en reglas (if–then) para identificar comportamientos sospechosos en transacciones."
+        "descripcion": "Los bancos comienzan a usar sistemas basados en reglas (if–then) para identificar comportamientos sospechosos en transacciones.",
+        "img": "timeline1.png"
     },
     2: {
         "año": 1995,
