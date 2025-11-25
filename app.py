@@ -5,8 +5,11 @@ st.set_page_config(page_title="Timeline de Detección de Fraude", layout="center
 st.title("💳 Timeline de los Avances Tecnológicos en la Detección de Fraude Bancario")
 
 st.write(
-    "Usa la barra deslizante para explorar cinco hitos tecnológicos que transformaron la lucha contra el fraude financiero."
-)
+    "Alumno: Herwuin Huaman Rivas")
+
+
+st.write(
+    "Usa la barra deslizante para explorar cinco hitos tecnológicos que transformaron la lucha contra el fraude financiero.")
 
 # Datos del timeline
 eventos = {
