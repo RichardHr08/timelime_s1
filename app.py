@@ -1,69 +1,54 @@
-import streamlit as st 
-st.set_page_config(page_title="Timeline de IA888", layout="centered")
+import streamlit as st
 
-import os
+st.set_page_config(page_title="Timeline de Detección de Fraude", layout="centered")
 
+st.title("💳 Timeline de los Avances Tecnológicos en la Detección de Fraude Bancario")
 
+st.write(
+    "Usa la barra deslizante para explorar cinco hitos tecnológicos que transformaron la lucha contra el fraude financiero."
+)
 
-# --- 2. RUTAS DE IMÁGENES CORREGIDAS ---
-
-# Cambia la ruta de la carpeta a una cadena vacía, ya que están en la raíz.
-# Esto hace que las rutas sean relativas al archivo app.py
-IMAGE_FOLDER = "" 
-
-# Lista de los nombres de tus 5 imágenes (¡CORRIGE LOS NOMBRES AQUÍ!)
-image_files = [
-    os.path.join(IMAGE_FOLDER, "timeline1.png"),
-    os.path.join(IMAGE_FOLDER, "timeline2.png"),
-    os.path.join(IMAGE_FOLDER, "timeline3.png"),
-    os.path.join(IMAGE_FOLDER, "timeline4.png"),
-    os.path.join(IMAGE_FOLDER, "timeline5.png"),
-]
-
-
-if len(image_files) != 5:
-    st.error(f"Error: Se esperaban 5 imágenes, pero se encontraron {len(image_files)} rutas definidas.")
-else:
-    # --- 3. SLIDER ---
-    
-    # Etiquetas personalizadas para cada punto del slider para mejorar la UX
-    slider_labels = {
-        1: "Primer Hito",
-        2: "Segundo Hito",
-        3: "Tercer Hito",
-        4: "Cuarto Hito",
-        5: "Quinto Hito"
+# Datos del timeline
+eventos = {
+    1: {
+        "año": 1987,
+        "titulo": "Sistemas de Reglas para Detección de Fraude",
+        "descripcion": "Los bancos comienzan a usar sistemas basados en reglas (if–then) para identificar comportamientos sospechosos en transacciones."
+    },
+    2: {
+        "año": 1995,
+        "titulo": "Modelos Estadísticos y Scoring",
+        "descripcion": "Se introducen modelos como regresión logística y scorecards para medir el riesgo de operaciones fraudulentas."
+    },
+    3: {
+        "año": 2005,
+        "titulo": "Machine Learning en Tiempo Real",
+        "descripcion": "Los bancos adoptan algoritmos de ML capaces de aprender patrones históricos y detectar anomalías mientras ocurre la transacción."
+    },
+    4: {
+        "año": 2015,
+        "titulo": "Redes Neuronales y Deep Learning",
+        "descripcion": "Se popularizan modelos profundos que identifican patrones complejos y mejoran la precisión contra fraudes cada vez más sofisticados."
+    },
+    5: {
+        "año": 2022,
+        "titulo": "IA Generativa y Sistemas Predictivos Avanzados",
+        "descripcion": "Se integran modelos generativos y análisis multimodal para anticipar rutas de fraude, simular ataques y mejorar la prevención proactiva."
     }
-    
-    # Creamos el slider. El valor inicial será 1.
-    selected_point = st.slider(
-        "Selecciona el punto de la línea de tiempo:",
-        min_value=1,
-        max_value=5,
-        step=1,
-        value=1 # Inicia en el primer punto
-    )
-    
-    # --- 4. CÁLCULO Y CARGA DE IMAGEN ---
-    
-    # Git utiliza un índice base 0, por lo que restamos 1 al valor del slider.
-    image_index = selected_point - 1
-    image_path = image_files[image_index]
-    
-    # Título que cambia según el slider
-    current_label = slider_labels.get(selected_point, f"Punto {selected_point}")
-    st.subheader(f"Mostrando: **{current_label}**")
+}
 
-    try:
-        # Carga la imagen usando la ruta relativa.
-        st.image(
-            image_path,
-            caption=f"Imagen cargada para: {current_label}",
-            use_column_width=True # Ajusta la imagen al ancho de la columna
-        )
-        
-    except FileNotFoundError:
-        st.error(
-            f"❌ **Error de Archivo:** No se pudo encontrar el archivo en la ruta: `{image_path}`. "
-            "Asegúrate de que el archivo exista y que la mayúscula/minúscula del nombre de la carpeta `timeline_images` sea idéntica."
-        )
+# Slider
+seleccion = st.slider(
+    "Selecciona un hito tecnológico:",
+    min_value=1,
+    max_value=5,
+    value=1,
+    format="Hito %d"
+)
+
+evento = eventos[seleccion]
+
+# Mostrar contenido
+st.subheader(f"📌 {evento['año']} — {evento['titulo']}")
+st.write(evento["descripcion"])
+
