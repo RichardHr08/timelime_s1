@@ -1,7 +1,9 @@
 import streamlit as st 
+st.set_page_config(page_title="Timeline de IA888", layout="centered")
+
 import os
 
-st.set_page_config(page_title="Timeline de IA", layout="centered")
+
 
 # --- 2. RUTAS DE IMÁGENES CORREGIDAS ---
 
