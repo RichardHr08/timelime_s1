@@ -4,6 +4,11 @@ import streamlit as st
 st.set_page_config(page_title="Timeline de Fraude Bancario", layout="centered")
 
 st.title("💳 Timeline Interactivo: Evolución Tecnológica en la Detección de Fraude Bancario")
+
+st.write(
+    "Alumno: Herwuin Huaman"
+)
+
 st.write(
     "Usa la barra deslizante para explorar cinco hitos importantes en la lucha contra el fraude bancario."
 )
