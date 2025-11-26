@@ -1,50 +1,50 @@
 import streamlit as st
 
-st.set_page_config(page_title="Timeline de Detección de Fraude", layout="centered")
+# Configuración de página
+st.set_page_config(page_title="Timeline de Fraude Bancario", layout="centered")
 
-st.title("💳 Timeline de los Avances Tecnológicos en la Detección de Fraude Bancario")
-
+st.title("💳 Timeline Interactivo: Evolución Tecnológica en la Detección de Fraude Bancario")
 st.write(
-    "Usa la barra deslizante para explorar cinco hitos tecnológicos que transformaron la lucha contra el fraude financiero."
+    "Usa la barra deslizante para explorar cinco hitos importantes en la lucha contra el fraude bancario."
 )
 
-# Datos del timeline con IMÁGENES
+# Datos del timeline
 eventos = {
     1: {
-        "año": 1987,
-        "titulo": "Sistemas de Reglas para Detección de Fraude",
-        "descripcion": "Los bancos comienzan a usar sistemas basados en reglas (if–then) para identificar comportamientos sospechosos.",
+        "año": 2000,
+        "titulo": "Sistemas basados en reglas",
+        "descripcion": "Los primeros sistemas antifraude analizaban patrones usando reglas fijas como límites de monto, horarios y ubicaciones.",
         "img": "timeline1.png"
     },
     2: {
-        "año": 1995,
-        "titulo": "Modelos Estadísticos y Scoring",
-        "descripcion": "Se introducen modelos como regresión logística y scorecards para medir el riesgo de operaciones fraudulentas.",
+        "año": 2008,
+        "titulo": "Modelos estadísticos avanzados",
+        "descripcion": "Los bancos implementan modelos como regresión logística y árboles de decisión para predecir fraude con mayor precisión.",
         "img": "timeline2.png"
     },
     3: {
-        "año": 2005,
-        "titulo": "Machine Learning en Tiempo Real",
-        "descripcion": "Los bancos adoptan algoritmos de ML capaces de detectar anomalías mientras ocurre la transacción.",
+        "año": 2014,
+        "titulo": "Machine Learning en producción",
+        "descripcion": "Se integran modelos de aprendizaje supervisado que detectan actividades sospechosas en tiempo real.",
         "img": "timeline3.png"
     },
     4: {
-        "año": 2015,
-        "titulo": "Redes Neuronales y Deep Learning",
-        "descripcion": "Modelos profundos permiten identificar patrones complejos y combatir fraudes más sofisticados.",
+        "año": 2017,
+        "titulo": "Deep Learning para análisis complejo",
+        "descripcion": "Las redes neuronales permiten reconocer patrones avanzados como secuencias, comportamientos atípicos y redes criminales.",
         "img": "timeline4.png"
     },
     5: {
-        "año": 2022,
-        "titulo": "IA Generativa y Sistemas Predictivos Avanzados",
-        "descripcion": "Los modelos generativos permiten anticipar rutas de fraude y simular ataques para mejorar la prevención.",
+        "año": 2023,
+        "titulo": "IA Generativa y sistemas modernos",
+        "descripcion": "Los bancos usan IA generativa para simular fraude, mejorar alertas y crear sistemas adaptativos de seguridad.",
         "img": "timeline5.png"
     }
 }
 
 # Slider
 seleccion = st.slider(
-    "Selecciona un hito tecnológico:",
+    "Selecciona un hito de la historia:",
     min_value=1,
     max_value=5,
     value=1,
@@ -57,6 +57,6 @@ evento = eventos[seleccion]
 st.subheader(f"📌 {evento['año']} — {evento['titulo']}")
 st.write(evento["descripcion"])
 
-# Mostrar imagen
+# Mostrar imagen del hito
 st.image(evento["img"], use_container_width=True)
 
